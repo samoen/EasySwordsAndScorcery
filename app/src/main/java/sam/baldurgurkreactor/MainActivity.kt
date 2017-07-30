@@ -94,6 +94,7 @@ class MainActivity : AppCompatActivity() {
         button_main.visibility = View.GONE
         editText_player_name.visibility = View.GONE
         button_continueAdventure.visibility = View.GONE
+        imageView.visibility = View.GONE
     }
     fun SavePlayer(){
         pultusORM.delete(DbPlayer())

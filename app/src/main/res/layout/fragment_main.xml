@@ -12,21 +12,21 @@
         <Button
             android:id="@+id/button_adventure"
             android:layout_width="wrap_content"
-            android:layout_height="40dip"
+            android:layout_height="50dip"
             android:layout_weight="1"
             android:text="Battle" />
 
         <Button
             android:id="@+id/button_respec"
             android:layout_width="wrap_content"
-            android:layout_height="40dip"
+            android:layout_height="50dip"
             android:layout_weight="1"
             android:text="Respec" />
 
         <Button
             android:id="@+id/button_itemShop"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
             android:text="Shop"
             android:textSize="14sp" />
@@ -34,7 +34,7 @@
         <Button
             android:id="@+id/button_save"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
             android:text="Save" />
     </LinearLayout>
@@ -50,16 +50,16 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView_playerItems"
         android:layout_width="match_parent"
-        android:layout_height="240dp"
+        android:layout_height="270dp"
         android:layout_marginTop="20dip"
-        android:layout_weight="0.47"></android.support.v7.widget.RecyclerView>
+        android:layout_weight="1.25"></android.support.v7.widget.RecyclerView>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="vertical"
-        android:paddingTop="20dip">
+        android:paddingTop="40dip">
 
         <TextView
             android:id="@+id/textView_equipped_title"

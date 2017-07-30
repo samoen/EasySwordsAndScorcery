@@ -47,9 +47,9 @@ class ImageAdapter(private val mContext: Context) : BaseAdapter() {
         val imageView: ImageView
         if (convertView == null) {
             imageView = ImageView(mContext)
-            imageView.setLayoutParams(ViewGroup.LayoutParams(105,105))
+            imageView.setLayoutParams(ViewGroup.LayoutParams(104,105))
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP)
-            imageView.setPadding(3, 3, 3, 3)
+            imageView.setPadding(2, 2, 2, 2)
         } else {
             imageView = convertView as ImageView
         }
@@ -137,8 +137,8 @@ class ImageAdapter(private val mContext: Context) : BaseAdapter() {
         for(m in monsters){
             if( (monsterSpeeds.get(m.key)!!.toInt() >= (mContext as MainActivity).currentPlayer.current_speed && faster)|| (monsterSpeeds.get(m.key)!!.toInt() < (mContext as MainActivity).currentPlayer.current_speed && !faster)  ){
 
-                val f = CalculatePairFromPosition(m.value).first + (Random().nextInt(2)-1)
-                val s = CalculatePairFromPosition(m.value).second + (Random().nextInt(2)-1)
+                val f = CalculatePairFromPosition(m.value).first.plus(Random().nextInt(3)).minus(1)
+                val s = CalculatePairFromPosition(m.value).second.plus(Random().nextInt(3)).minus(1)
                 val pos = CalculatePositionFromPair(Pair(f,s))
                 if(f in 1..10 && s in 1..10 && !monsters.containsValue(pos)){
                     mThumbIds.set(m.value,emptySquare)

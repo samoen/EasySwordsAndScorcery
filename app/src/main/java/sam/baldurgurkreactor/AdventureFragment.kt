@@ -58,10 +58,12 @@ class AdventureFragment : Fragment() {
             SelectAbility(activeSlot)
         }
         button_wait.setOnClickListener {
+            (gridView_adventure.adapter as ImageAdapter).RemoveMarkers(activeMarkers)
             (gridView_adventure.adapter as ImageAdapter).ActivateMonsters(true)
             (gridView_adventure.adapter as ImageAdapter).ActivateMonsters(false)
             (gridView_adventure.adapter as ImageAdapter).notifyDataSetChanged()
             DecrementAllCooldowns()
+            CheckDeath()
         }
 
         gridView_adventure.adapter = ImageAdapter(context)

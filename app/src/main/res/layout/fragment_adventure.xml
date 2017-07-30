@@ -21,7 +21,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingTop="20dp">
 
         <Button
             android:id="@+id/button_mainHand"
@@ -50,7 +51,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="bottom|fill_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingTop="20dp">
 
         <Button
             android:id="@+id/button_shoulders"
