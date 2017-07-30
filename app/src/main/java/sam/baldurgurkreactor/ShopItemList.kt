@@ -7,7 +7,7 @@ object ShopItemList {
                 name = "rusty helmet",
                 stat_requirement = StatRequirement(strength_range = 3..7,dexterity_range = 2..6,intelligence_range = 2..6),
                 equipment_slot = 0,
-                ability = Ability(type = "move", relative_pairs = listOf(Pair(0,1),Pair(1,0), Pair(-1,0),Pair(1,-1),Pair(-1,-1)),speed = 3),
+                ability = Ability(type = "move", relative_pairs = listOf(Pair(0,1),Pair(1,0), Pair(-1,0),Pair(1,-1),Pair(-1,-1)),speed = 2),
                 price = 0,
                 cooldown = 3
         ),
@@ -15,7 +15,7 @@ object ShopItemList {
                 name = "tattered clothes",
                 stat_requirement = StatRequirement(3..8,2..6,2..6),
                 equipment_slot = 1,
-                ability = Ability("move", listOf(Pair(3,0), Pair(-3,0)),6),
+                ability = Ability(type = "move", relative_pairs = listOf(Pair(2,0), Pair(-2,0)),speed = 3),
                 cooldown = 2,
                 price = 0
         ),
@@ -23,7 +23,7 @@ object ShopItemList {
                 name = "old shoes",
                 stat_requirement = StatRequirement(3..9,2..6,2..6),
                 equipment_slot = 2,
-                ability = Ability("move", listOf(Pair(0,2),Pair(2,0), Pair(-2,0),Pair(0,-2)),5),
+                ability = Ability("move", listOf(Pair(0,2),Pair(0,-1)),3),
                 price = 0,
                 cooldown = 2
         ),
@@ -32,14 +32,14 @@ object ShopItemList {
                 stat_requirement = StatRequirement(3..8,2..6,2..6),
                 equipment_slot = 3,
                 ability = Ability("attack", listOf(Pair(0,1),Pair(1,0),Pair(-1,0)),3),
-                cooldown = 1,
+                cooldown = 3,
                 price = 0
         ),
         4 to Item(
                 name = "dusty knife",
                 stat_requirement = StatRequirement(3..10,2..6,2..6),
                 equipment_slot = 4,
-                ability = Ability("attack", listOf(Pair(0,2),Pair(1,1), Pair(-1,1),Pair(0,-1)),4),
+                ability = Ability(type = "attack", relative_pairs = listOf(Pair(1,1),Pair(-1,1),Pair(0,-1),Pair(0,1)),speed = 4),
                 cooldown = 3,
                 price = 0
         ),

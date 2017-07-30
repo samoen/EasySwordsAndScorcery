@@ -123,10 +123,10 @@ class ImageAdapter(private val mContext: Context) : BaseAdapter() {
     fun GenerateMonster(){
         for(i in 0..40){
             if(!monsters.containsKey(i)){
-                val r = Random().nextInt(9)+1
+                val r = Random().nextInt(10)
                 mThumbIds.set(r,enemy)
                 monsters.put(i,r)
-                monsterSpeeds.put(i,Random().nextInt(10))
+                monsterSpeeds.put(i,Random().nextInt(11))
                 break
             }
         }
@@ -135,7 +135,7 @@ class ImageAdapter(private val mContext: Context) : BaseAdapter() {
     fun ActivateMonsters(faster:Boolean){
         val newMonsters = monsters
         for(m in monsters){
-            if( (monsterSpeeds.get(m.key)!!.toInt() >= (mContext as MainActivity).currentPlayer.current_speed && faster)|| (monsterSpeeds.get(m.key)!!.toInt() < (mContext as MainActivity).currentPlayer.current_speed && !faster)  ){
+            if( (monsterSpeeds.get(m.key)!!.toInt() >= (mContext as MainActivity).currentPlayer.current_speed && faster)|| (monsterSpeeds.get(m.key)!!.toInt() < (mContext).currentPlayer.current_speed && !faster)  ){
 
                 val f = CalculatePairFromPosition(m.value).first.plus(Random().nextInt(3)).minus(1)
                 val s = CalculatePairFromPosition(m.value).second.plus(Random().nextInt(3)).minus(1)

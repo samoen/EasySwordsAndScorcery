@@ -61,6 +61,7 @@ class AdventureFragment : Fragment() {
             (gridView_adventure.adapter as ImageAdapter).RemoveMarkers(activeMarkers)
             (gridView_adventure.adapter as ImageAdapter).ActivateMonsters(true)
             (gridView_adventure.adapter as ImageAdapter).ActivateMonsters(false)
+            (gridView_adventure.adapter as ImageAdapter).GenerateMonster()
             (gridView_adventure.adapter as ImageAdapter).notifyDataSetChanged()
             DecrementAllCooldowns()
             CheckDeath()
