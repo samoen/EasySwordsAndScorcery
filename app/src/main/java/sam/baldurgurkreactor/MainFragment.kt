@@ -46,7 +46,6 @@ class MainFragment : Fragment(), ItemAdapter.onViewSelectedListener {
         RefreshTextViews()
         RefreshListItems()
 
-        //recyclerView_playerItems.adapter = PlayerItemAdapter(this, listItems)
         recyclerView_playerItems.adapter = ItemAdapter(this, listItems)
 
     }

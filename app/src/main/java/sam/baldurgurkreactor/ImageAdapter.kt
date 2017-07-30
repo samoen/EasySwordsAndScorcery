@@ -1,7 +1,6 @@
 package sam.baldurgurkreactor
 
 import android.content.Context
-import android.os.Handler
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
@@ -9,6 +8,28 @@ import android.widget.ImageView
 import java.util.*
 
 class ImageAdapter(private val mContext: Context) : BaseAdapter() {
+
+    var lastMiss : Int? = null
+    var monsters = mutableMapOf<Int,Int>()
+    var monsterSpeeds = mutableMapOf<Int,Int>()
+    val option = R.drawable.target_square
+    val player = R.drawable.hero_image
+    val emptySquare = R.drawable.empty_square
+    val hitSquare = R.drawable.dead_goblin_image
+    val enemy = R.drawable.goblin_image
+    val miss = R.drawable.miss_square
+    private val mThumbIds = arrayOf<Int>(
+            emptySquare, emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,
+            emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,
+            emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,
+            emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,
+            emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,
+            emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,
+            emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,
+            emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,
+            emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,
+            emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare
+    )
 
     override fun getCount(): Int {
         return mThumbIds.size
@@ -71,19 +92,25 @@ class ImageAdapter(private val mContext: Context) : BaseAdapter() {
     }
     fun PlaceHeroFromPosition(position: Int){
         mThumbIds.set(position,player)
-        mThumbIds.set(CalculatePositionFromPair((mContext as MainActivity).currentPlayer.location?:Pair(1,1)),emptySquare)
+        mThumbIds.set(CalculatePositionFromPair((mContext as MainActivity).currentPlayer.location),emptySquare)
         mContext.currentPlayer.location = CalculatePairFromPosition(position)
     }
     fun AttackFromPosition(position: Int){
         val newMonsters = monsters
-
         if(monsters.containsValue(position) ){
             newMonsters.remove(newMonsters.filter { it.value == position }.keys.toIntArray().get(0))
             mThumbIds.set(position,hitSquare)
-            //Handler().postDelayed({ mThumbIds.set(position,emptySquare) },300)
             (mContext as MainActivity).currentPlayer.gold++
+        }else{
+            mThumbIds.set(position,miss)
+            lastMiss = position
         }
         monsters = newMonsters
+    }
+    fun ClearLastMiss(){
+        if(!(lastMiss == null)){
+            mThumbIds.set(lastMiss as Int,emptySquare)
+        }
     }
     fun CalculatePairFromPosition(pos: Int): Pair<Int,Int>{
         val column = Math.ceil((pos.toDouble() + 1) / 10).toInt()
@@ -118,7 +145,6 @@ class ImageAdapter(private val mContext: Context) : BaseAdapter() {
                     newMonsters.put(m.key,pos)
                     mThumbIds.set(pos,enemy)
                 }
-                //else{newMonsters.remove(newMonsters.filter { it.value == m.value }.keys.toIntArray().get(0)) }
             }
         }
         monsters = newMonsters
@@ -127,7 +153,7 @@ class ImageAdapter(private val mContext: Context) : BaseAdapter() {
     fun CheckPlayerDeath():Boolean{
         var dead = false
         for(m in monsters){
-            if(m.value == CalculatePositionFromPair((mContext as MainActivity).currentPlayer.location?:Pair(1,1))){
+            if(m.value == CalculatePositionFromPair((mContext as MainActivity).currentPlayer.location)){
                 dead = true
             }
         }
@@ -152,30 +178,12 @@ class ImageAdapter(private val mContext: Context) : BaseAdapter() {
     fun CalculatePairsFromRelative(rel: List<Pair<Int,Int>>):List<Pair<Int,Int>> {
         val absolutes = mutableListOf<Pair<Int, Int>>()
         for (v in rel) {
-            val p = Pair(((mContext as MainActivity).currentPlayer.location?.first as Int) + v.first, (mContext.currentPlayer.location?.second) as Int + v.second)
+            val p = Pair(((mContext as MainActivity).currentPlayer.location.first) + v.first, (mContext.currentPlayer.location.second)+ v.second)
             absolutes.add(p)
         }
         return absolutes
     }
 
-    var monsters = mutableMapOf<Int,Int>()
-    var monsterSpeeds = mutableMapOf<Int,Int>()
-    val option = R.drawable.abc_ic_arrow_drop_right_black_24dp
-    val player = R.drawable.abc_ic_star_black_48dp
-    val emptySquare = R.drawable.empty_square
-    val hitSquare = R.drawable.abc_ic_voice_search_api_material
-    val enemy = R.drawable.notification_bg
-    private val mThumbIds = arrayOf<Int>(
-            emptySquare, emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,
-            emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,
-            emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,
-            emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,
-            emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,
-            emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,
-            emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,
-            emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,
-            emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,
-            emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare,emptySquare
-    )
+
 }
 

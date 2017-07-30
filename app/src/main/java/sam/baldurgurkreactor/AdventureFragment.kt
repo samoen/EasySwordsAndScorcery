@@ -116,10 +116,12 @@ class AdventureFragment : Fragment() {
     }
     fun SlowerStage(){
         if(!isHeroDead){
+            (gridView_adventure.adapter as ImageAdapter).ClearLastMiss()
             (gridView_adventure.adapter as ImageAdapter).ActivateMonsters(false)
             (gridView_adventure.adapter as ImageAdapter).GenerateMonster()
             (gridView_adventure.adapter as ImageAdapter).notifyDataSetChanged()
             CheckDeath()
+
         }
     }
     fun CheckDeath(){
