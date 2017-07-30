@@ -38,6 +38,6 @@ data class Player(var name: String="DefaultPlayer", var strength: Int = 5, var d
         return canchange
     }
 }
-data class Item(var name: String = "default item", var stat_requirement: StatRequirement = StatRequirement(), var equipment_slot: Int = 0, var ability:Ability = Ability(), var price: Int = 0)
+data class Item(var name: String = "default item", var stat_requirement: StatRequirement = StatRequirement(), var equipment_slot: Int = 0, var ability:Ability = Ability(), var price: Int = 0, var cooldown: Int =0)
 data class StatRequirement(var strength_range: IntRange = 0..11, var dexterity_range: IntRange= 0..11, var intelligence_range: IntRange= 0..11)
 data class Ability(var type: String = "default ability", var relative_pairs: List<Pair<Int,Int>> = listOf(),var speed:Int = 0)

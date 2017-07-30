@@ -22,7 +22,8 @@ object ShopItemList {
                 stat_requirement = StatRequirement(3..9,2..6,2..6),
                 equipment_slot = 2,
                 ability = Ability("move", listOf(Pair(0,2),Pair(2,0), Pair(-2,0),Pair(0,-2)),5),
-                price = 0
+                price = 0,
+                cooldown = 2
         ),
         3 to Item(
                 name = "beaten sheild",

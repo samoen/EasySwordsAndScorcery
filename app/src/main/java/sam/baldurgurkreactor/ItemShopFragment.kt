@@ -17,22 +17,26 @@ class ItemShopFragment:Fragment(), ItemAdapter.onViewSelectedListener {
         return inflater.inflate(R.layout.fragment_item_shop,container,false)
     }
     override fun onItemSelected(item: Item) {
-        val simpleAlert = AlertDialog.Builder(activity).create()
-        simpleAlert.setTitle("Buy Item")
-        simpleAlert.setMessage("${item.name} for ${item.price} gold")
-        simpleAlert.setButton(AlertDialog.BUTTON_POSITIVE, "OK", object :DialogInterface.OnClickListener{
-            override fun onClick(dialog: DialogInterface?, which: Int) {
-                if((activity as MainActivity).currentPlayer.CanAfford(item)){
-                    (activity as MainActivity).currentPlayer.items.add(item)
-                    (activity as MainActivity).currentPlayer.gold = (activity as MainActivity).currentPlayer.gold - item.price
-                    Toast.makeText(context,"Item Purchased!",Toast.LENGTH_SHORT).show()
-                }else{
-                    Toast.makeText(context,"You can't afford that",Toast.LENGTH_SHORT).show()
-                }
-            }
-        })
-        simpleAlert.show()
 
+        if ((activity as MainActivity).currentPlayer.items.contains(item)){
+            Toast.makeText(context,"You already own that item",Toast.LENGTH_SHORT).show()
+        }else{
+            val simpleAlert = AlertDialog.Builder(activity).create()
+            simpleAlert.setTitle("Buy Item")
+            simpleAlert.setMessage("${item.name} for ${item.price} gold")
+            simpleAlert.setButton(AlertDialog.BUTTON_POSITIVE, "OK", object :DialogInterface.OnClickListener{
+                override fun onClick(dialog: DialogInterface?, which: Int) {
+                    if((activity as MainActivity).currentPlayer.CanAfford(item)){
+                        (activity as MainActivity).currentPlayer.items.add(item)
+                        (activity as MainActivity).currentPlayer.gold = (activity as MainActivity).currentPlayer.gold - item.price
+                        Toast.makeText(context,"Item Purchased!",Toast.LENGTH_SHORT).show()
+                    }else{
+                        Toast.makeText(context,"You can't afford that",Toast.LENGTH_SHORT).show()
+                    }
+                }
+            })
+            simpleAlert.show()
+        }
     }
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
