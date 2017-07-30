@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
             4 to ShopItemList.allItems[4]
     )
 
-    var currentPlayer = Player(gold = 10)
+    var currentPlayer = Player(gold = 3)
     val appPath: String by lazy { this.applicationContext.getFilesDir().getAbsolutePath() }
     val pultusORM: PultusORM by lazy { PultusORM("easysword.db", appPath) }
 
