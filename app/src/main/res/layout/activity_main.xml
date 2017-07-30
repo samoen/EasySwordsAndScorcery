@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="sam.baldurgurkreactor.MainActivity"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/button_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Game" />
+
+    <EditText
+        android:id="@+id/editText_player_name"
+        android:layout_width="193dp"
+        android:layout_height="55dp"
+        android:ems="10"
+        android:hint="Your Character Name"
+        android:inputType="textPersonName"
+        android:text="" />
+
+    <FrameLayout
+        android:id="@+id/framelayout_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/button_continueAdventure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Continue Adventure" />
+    </FrameLayout>
+
+</LinearLayout>
