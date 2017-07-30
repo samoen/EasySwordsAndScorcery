@@ -35,7 +35,7 @@ class ItemAdapter(val viewActions: onViewSelectedListener, shopItems: MutableLis
             }
 
             textView1.text = item.name
-            textView2.text = "Slot: $slotString, Speed: ${item.ability.speed}, Price: ${item.price}"
+            textView2.text = "Slot: $slotString, Speed: ${item.ability.speed}, Cooldown: ${item.cooldown-1} Price: ${item.price}"
             textView3.text = "Stat Requirments: Str ${item.stat_requirement.strength_range}  Dex ${item.stat_requirement.dexterity_range}  Int ${item.stat_requirement.intelligence_range}"
             textView4.text = "Ability: ${item.ability.type} ${item.ability.relative_pairs}"
             super.itemView.setOnClickListener { viewActions.onItemSelected(item)}

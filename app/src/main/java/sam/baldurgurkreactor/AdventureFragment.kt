@@ -57,6 +57,12 @@ class AdventureFragment : Fragment() {
             activeSlot = 4
             SelectAbility(activeSlot)
         }
+        button_wait.setOnClickListener {
+            (gridView_adventure.adapter as ImageAdapter).ActivateMonsters(true)
+            (gridView_adventure.adapter as ImageAdapter).ActivateMonsters(false)
+            (gridView_adventure.adapter as ImageAdapter).notifyDataSetChanged()
+            DecrementAllCooldowns()
+        }
 
         gridView_adventure.adapter = ImageAdapter(context)
 
@@ -70,7 +76,6 @@ class AdventureFragment : Fragment() {
 
                         cooldowns.put(activeSlot,p[activeSlot]?.cooldown?:0)
                         DecrementAllCooldowns()
-
                         Handler().postDelayed({HeroStage(position)},300)
                         Handler().postDelayed({SlowerStage()},600)
                     }
@@ -149,5 +154,21 @@ class AdventureFragment : Fragment() {
                 cooldowns.put(v.key,old-1)
             }
         }
+        val p = (activity as MainActivity).currentPlayer.equipped
+        if(!(cooldowns[0]==0)){
+            button_head.setText("${p[0]?.name} (${cooldowns[0]})")
+        }else button_head.setText(p[0]?.name)
+        if(!(cooldowns[1]==0)){
+            button_shoulders.setText("${p[1]?.name} (${cooldowns[1]})")
+        }else button_shoulders.setText(p[1]?.name)
+        if(!(cooldowns[2]==0)){
+            button_legs.setText("${p[2]?.name} (${cooldowns[2]})")
+        }else button_legs.setText(p[2]?.name)
+        if(!(cooldowns[3]==0)){
+            button_offHand.setText("${p[3]?.name} (${cooldowns[3]})")
+        }else button_offHand.setText(p[3]?.name)
+        if(!(cooldowns[4]==0)){
+            button_mainHand.setText("${p[4]?.name} (${cooldowns[4]})")
+        }else button_mainHand.setText(p[4]?.name)
     }
 }

@@ -183,7 +183,5 @@ class ImageAdapter(private val mContext: Context) : BaseAdapter() {
         }
         return absolutes
     }
-
-
 }
 
