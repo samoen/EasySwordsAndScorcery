@@ -28,7 +28,7 @@ object ShopItemList {
                 cooldown = 2
         ),
         3 to Item(
-                name = "beaten sheild",
+                name = "beaten shield",
                 stat_requirement = StatRequirement(3..8,2..6,2..6),
                 equipment_slot = 3,
                 ability = Ability("attack", listOf(Pair(0,1),Pair(1,0),Pair(-1,0)),3),
@@ -76,7 +76,7 @@ object ShopItemList {
                 price = 3
         ),
         9 to Item(
-                name = "knight sheild",
+                name = "knight shield",
                 stat_requirement = StatRequirement(5..10,2..6,2..6),
                 equipment_slot = 3,
                 ability = Ability("attack", listOf(Pair(0,2),Pair(0,3),Pair(1,2),Pair(-1,2)),5),
